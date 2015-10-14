@@ -15,7 +15,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:docks_bike).with(1).argument }
 
   docking_station.docks_bike(bike)
-  describe docking_station.bike do
+  describe docking_station.bikes do
     it { is_expected.to include(bike)}
   end
 
@@ -26,7 +26,9 @@ describe DockingStation do
   it "should raise an error when the docking station is full" do
     b = Bike.new
     subject.docks_bike(b)
-    expect {subject.docks_bike(Bike.new)}.to raise_error("Docking Station is full")
+    expect {21.times{subject.docks_bike(Bike.new)}}.to raise_error("Docking Station is full")
   end
+
+
 
 end
