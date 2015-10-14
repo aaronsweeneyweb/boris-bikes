@@ -19,8 +19,14 @@ describe DockingStation do
     it { is_expected.to include(bike)}
   end
 
-it "should raise an error when there are no more bikes available" do
-  expect {subject.release_bike}.to raise_error("No more bikes available")
-end
+  it "should raise an error when there are no more bikes available" do
+    expect {subject.release_bike}.to raise_error("No more bikes available")
+  end
+
+  it "should raise an error when the docking station is full" do
+    b = Bike.new
+    subject.docks_bike(b)
+    expect {subject.docks_bike(Bike.new)}.to raise_error("Docking Station is full")
+  end
 
 end
